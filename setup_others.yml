@@ -1,0 +1,62 @@
+# setup_rca_home.yml
+# This sets up a new system the way I like it
+#
+---
+
+
+        # for make and other things
+- name: install build-essential
+  become: True
+  apt: 
+    name: build-essential
+
+        # install go compiler
+- name: install golang
+  become: True
+  apt: 
+    name: golang
+
+        #install pip for installing python modules
+- name: install python3-pip
+  # needed to become? would it just install it loclly? 
+  become: True
+  apt: 
+    name: python3-pip
+
+- name: install git
+  become: True
+  apt: 
+    name: git
+
+- name: install unzip
+  become: True
+  apt: 
+    name: unzip
+####################
+- name: install pv
+  become: True
+  apt: 
+    name: pv
+
+- name: install jq
+  become: True
+  apt: 
+    name: jq
+
+- name: install vim
+  become: True
+  apt: 
+    name: vim
+
+- name: install pandoc
+  become: True
+  apt: 
+    name: pandoc
+
+- name: install lynx
+  become: True
+  apt: 
+    name: lynx
+
+
+

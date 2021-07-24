@@ -1,0 +1,9 @@
+
+---
+- hosts: dockers
+  tasks:
+    - name: shutdown        
+      become: true
+      command: /usr/sbin/init 0
+
+      #    - command: /sbin/shutdown -r now

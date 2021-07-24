@@ -1,0 +1,12 @@
+
+          #    - name: shutdown        
+          #      become: true
+          #      command: /usr/sbin/init 0
+      #    - command: /sbin/shutdown -r now
+
+---
+- hosts: hal
+  tasks:
+  - name: Delay shutting down the remote node
+    community.general.shutdown:
+    delay: 6

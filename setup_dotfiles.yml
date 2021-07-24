@@ -1,0 +1,42 @@
+# dotfiles.yml
+# This sets up a new system the way I like it
+#
+## .changelog is required for the hs (history save) command
+#---
+- name: Create ~/.changelog
+  file:
+    path: "~/.changelog"
+    state: directory
+
+- name: Create ~/dotfiles
+  file:
+    path: "~/dotfiles"
+    state: directory
+
+- name: Create symlink for .d
+  file:
+    src: "~/dotfiles"
+    dest: "~/.d"
+    state: link
+
+- name: copy the ssh config files from our ~/dotfiles to ~/.ssh remote
+  ansible.builtin.copy:
+    src: "rca_config"
+    dest: "~/.ssh/config"
+    backup: yes
+
+- name: copy the files from our ~/dotfiles
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~/dotfiles/"
+  with_fileglob: 
+      - "dotfiles/*"
+
+- name: add to bashrc to run my profile things
+  blockinfile:
+    path: "~/.profile"
+    block: |
+      if [[ -d ~/.d && -f .d/bashrc_addendum ]]; then
+        . .d/bashrc_addendum
+      fi
+

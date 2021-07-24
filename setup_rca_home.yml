@@ -1,0 +1,13 @@
+# setup_rca_home.yml
+# This sets up a new system the way I like it
+#
+
+---
+  - hosts: hal
+    tasks: 
+    - import_tasks: setup_dotfiles.yml
+    - import_tasks: setup_devtools.yml
+      #    - import_tasks: setup_others.yml
+    - import_tasks: update.yml
+
+
